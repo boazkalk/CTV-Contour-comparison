@@ -30,6 +30,9 @@ Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Calculate the inter modality volume dice coefficient
 Result_dice_single = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
+% Calculate the CTV mismatch
+Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
+
 %%
 for i = 1:1:nr_patients
 patient = i;
@@ -39,15 +42,17 @@ boxplot((tempsim),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Patient = ' num2str(patient)])
 end
 
-%% Calculate the CTV mismatch
-for i = 1:1:nr_patients
-    for j = 1:1:nr_mod
-        mask_intersect = Proc_Pat_delin(i).mod(j).specialist(1).TDmask;
-        mask_union = Proc_Pat_delin(i).mod(j).specialist(1).TDmask;
-        for k = 2:1:nr_specialists
-            mask2 = Proc_Pat_delin(i).mod(j).specialist(k).TDmask;
-            mask_intersect = intersect(mask_intersect, mask2);
-            mask_u= union(mask_union, mask2);
-        end
-    end
-end
+%%
+addpath('C:\School\Master\Stage\Matlab\overig');
+
+% mask1 = Proc_Pat_delin(1).mod(1).specialist(2).TDmask;
+% mask2 = Proc_Pat_delin(1).mod(1).specialist(3).TDmask;
+mask1 = rand(25,25);
+mask1(mask1<0.5) = 0;
+mask1 = logical(mask1);
+mask2 = rand(25,25);
+mask2(mask2<0.5) = 0;
+mask2 = logical(mask2);
+
+[D1,idx1]=imhausdorff((mask1),(mask2));
+

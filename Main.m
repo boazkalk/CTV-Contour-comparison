@@ -42,4 +42,18 @@ boxplot((tempsim),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Patient = ' num2str(patient)])
 end
 
+%%
+addpath('C:\School\Master\Stage\Matlab\overig');
+
+% mask1 = Proc_Pat_delin(1).mod(1).specialist(2).TDmask;
+% mask2 = Proc_Pat_delin(1).mod(1).specialist(3).TDmask;
+mask1 = rand(100,100,3);
+mask1(mask1<0.9) = 0;
+mask1 = logical(mask1);
+mask2 = rand(100,100,3);
+mask2(mask2<0.9) = 0;
+mask2 = logical(mask2);
+
+
+[D1,idx1]=imhausdorff((mask1),(mask2));
 
