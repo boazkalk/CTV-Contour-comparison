@@ -1,4 +1,6 @@
 function Result_dice = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists)
+    % Calculate inter specialist dice coefficient by comparing their 3D
+    % masks with the Dice coefficient
     for i = 1:1:nr_patients
             for j = 1:1:nr_mod
     

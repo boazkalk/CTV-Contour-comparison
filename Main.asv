@@ -18,16 +18,14 @@ nr_specialists = length(specialists);
 
 % Parse the information of the RTSTRUCT files and put in a data struct
 Pat_delin = parsetotal(folderpath, nr_patients, mod, specialists);
-% Get 2D masks from the contours 
+% Get masks from the contours
 Pat_delin = getmasks(Pat_delin,nr_patients, nr_mod,nr_specialists);
 % Put all masks in the right order wrt slice number in the total volume
 Pat_delin = sortimagenr_masks(Pat_delin, nr_patients, nr_mod,nr_specialists);
-% Remove double contours by adding them together
+% Remove 
 Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
-% Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
-% Calculate the inter modality volume dice coefficient
 Result_dice = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
 %%

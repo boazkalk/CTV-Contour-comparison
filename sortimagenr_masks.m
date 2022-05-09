@@ -1,5 +1,6 @@
 function Pat_delin = sortimagenr_masks(Pat_delin, nr_patients, nr_mod, nr_specialists)
 
+% Sort the masks according to slice number
 for i = 1:1:nr_patients
     for j = 1:1:nr_mod
         for k = 1:1:nr_specialists

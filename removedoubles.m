@@ -1,4 +1,7 @@
 function Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists)
+    % If the contour in one slice is disconnected for some reason, two
+    % contours are created for the same slice number. Here these two
+    % contours are combined in one mask.
     Proc_Pat_delin = Pat_delin;
     for i = 1:1:nr_patients
         for j = 1:1:nr_mod
