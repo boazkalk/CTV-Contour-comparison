@@ -28,12 +28,15 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
 % Calculate the inter modality volume dice coefficient
-Result_dice = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+Result_dice_single = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+
+% Calculate the CTV mismatch
+Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
 %%
 for i = 1:1:nr_patients
 patient = i;
-tempsim = transpose(table2array(struct2table(Result_dice(patient).mod)));
+tempsim = transpose(table2array(struct2table(Result_dice_single(patient).mod)));
 figure()
 boxplot((tempsim),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Patient = ' num2str(patient)])
