@@ -33,8 +33,7 @@ Result_dice_single = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specia
 % Calculate the CTV mismatch
 Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
-% Calculate 95th percentile hausdorff distance 
-% Pixel!!!! not yet metric -> export resolution
+% Calculate max + 95th percentile hausdorff distance 
 [Result_hdistD95, Result_hdistDmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
 %%
