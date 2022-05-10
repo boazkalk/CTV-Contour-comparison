@@ -33,27 +33,27 @@ Result_dice_single = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specia
 % Calculate the CTV mismatch
 Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
+% Calculate 95th percentile hausdorff distance 
+% Pixel!!!! not yet metric -> export resolution
+[Result_hdistD95, Result_hdistDmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
+
 %%
 for i = 1:1:nr_patients
 patient = i;
-tempsim = transpose(table2array(struct2table(Result_dice_single(patient).mod)));
+tempdicesingle = transpose(table2array(struct2table(Result_dice_single(patient).mod)));
 figure()
-boxplot((tempsim),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Patient = ' num2str(patient)])
+
+temphdist95 = transpose(table2array(struct2table(Result_hdistD95(patient).mod)));
+figure()
+boxplot((temphdist95),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+title(['Hdorff95, Patient = ' num2str(patient)])
+
+temphdistmax = transpose(table2array(struct2table(Result_hdistDmax(patient).mod)));
+figure()
+boxplot((temphdistmax),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+title(['Hdorffmax, Patient = ' num2str(patient)])
 end
 
-%%
-addpath('C:\School\Master\Stage\Matlab\overig');
-
-% mask1 = Proc_Pat_delin(1).mod(1).specialist(2).TDmask;
-% mask2 = Proc_Pat_delin(1).mod(1).specialist(3).TDmask;
-mask1 = rand(100,100,3);
-mask1(mask1<0.9) = 0;
-mask1 = logical(mask1);
-mask2 = rand(100,100,3);
-mask2(mask2<0.9) = 0;
-mask2 = logical(mask2);
-
-
-[D1,idx1]=imhausdorff((mask1),(mask2));
 

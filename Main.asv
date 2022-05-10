@@ -45,14 +45,24 @@ end
 %%
 addpath('C:\School\Master\Stage\Matlab\overig');
 
-% mask1 = Proc_Pat_delin(1).mod(1).specialist(2).TDmask;
-% mask2 = Proc_Pat_delin(1).mod(1).specialist(3).TDmask;
-mask1 = rand(25,25);
-mask1(mask1<0.5) = 0;
-mask1 = logical(mask1);
-mask2 = rand(25,25);
-mask2(mask2<0.5) = 0;
-mask2 = logical(mask2);
+mask1 = [];
+mask2 = [];
 
-[D1,idx1]=imhausdorff((mask1),(mask2));
+mask1(:,:,1) = [0 0 0 0; 0 0 0 0; 0 0 0 0; 0 0 0 0];
+mask1(:,:,2) = [0 0 0 0; 0 1 1 0; 0 1 1 0; 0 0 0 0];
+mask1(:,:,3) = [0 0 0 0; 0 1 1 0; 0 1 1 0; 0 0 0 0];
+mask1(:,:,4) = [0 0 0 0; 0 0 0 0; 0 0 0 0; 0 0 0 0];
+
+
+mask2(:,:,1) = [0 0 0 0; 0 0 0 0; 0 0 0 0; 0 0 0 0];
+mask2(:,:,2) = [0 0 0 0; 0 1 1 0; 0 1 1 0; 0 0 0 0];
+mask2(:,:,3) = [0 0 0 0; 0 1 1 0; 0 1 1 1; 0 0 0 0];
+mask2(:,:,4) = [0 0 0 0; 0 0 0 0; 0 0 0 0; 0 0 0 0];
+
+
+D1=hausdorff((mask1),(mask2));
+
+%%
+test = [1 2 3 4 5 6 7 8 9 10];
+P = prctile(test,95);
 
