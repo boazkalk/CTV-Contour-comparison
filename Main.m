@@ -43,13 +43,21 @@ tempdicesingle = transpose(table2array(struct2table(Result_dice_single(patient).
 figure()
 boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Patient = ' num2str(patient)])
+end
 
+%%
+for i = 1:1:nr_patients
+patient = i;
 temphdist95 = transpose(table2array(struct2table(Result_hdistD95(patient).mod)));
 figure()
 boxplot((temphdist95),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Hdorff95, Patient = ' num2str(patient)])
+end
 
-temphdistmax = transpose(table2array(struct2table(Result_hdistDmax(patient).mod)));
+%%
+for i = 1:1:nr_patients
+patient = i;
+temphdistmax = transpose(table2arvremoray(struct2table(Result_hdistDmax(patient).mod)));
 figure()
 boxplot((temphdistmax),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
 title(['Hdorffmax, Patient = ' num2str(patient)])
