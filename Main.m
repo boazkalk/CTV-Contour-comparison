@@ -1,7 +1,7 @@
 clear all
 close all
 
-plotresults = 0;
+plotresults = 1;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
@@ -45,17 +45,19 @@ if plotresults == true
     tempdicesingle = transpose(table2array(struct2table(Result_dice_single(patient).mod)));
     figure()
     boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
-    title(['Patient = ' num2str(patient)])
+    title(['Dice, Patient = ' num2str(patient)])
     
     temphdist95 = transpose(table2array(struct2table(Result_hdistD95(patient).mod)));
     figure()
     boxplot((temphdist95),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
     title(['Hdorff95, Patient = ' num2str(patient)])
     
-    temphdistmax = transpose(table2arvremoray(struct2table(Result_hdistDmax(patient).mod)));
+    temphdistmax = transpose(table2array(struct2table(Result_hdistDmax(patient).mod)));
     figure()
     boxplot((temphdistmax),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
     title(['Hdorffmax, Patient = ' num2str(patient)])
+
+    clear tempdicesingle temphdist95 temphdistmax
     end
 else
 end
@@ -85,6 +87,8 @@ if plotresults == true
     figure()
     boxplot((temphdistmax),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
     title(['Combined hausdorff max'])
+
+    clear tempdicecombinedmism tempdicecombined temphdistmax temphdist95
 else
 end
 
