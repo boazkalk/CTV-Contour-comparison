@@ -45,17 +45,19 @@ if plotresults == true
     tempdicesingle = transpose(table2array(struct2table(Result_dice_single(patient).mod)));
     figure()
     boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
-    title(['Patient = ' num2str(patient)])
+    title(['Dice, Patient = ' num2str(patient)])
     
     temphdist95 = transpose(table2array(struct2table(Result_hdistD95(patient).mod)));
     figure()
     boxplot((temphdist95),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
     title(['Hdorff95, Patient = ' num2str(patient)])
     
-    temphdistmax = transpose(table2arvremoray(struct2table(Result_hdistDmax(patient).mod)));
+    temphdistmax = transpose(table2array(struct2table(Result_hdistDmax(patient).mod)));
     figure()
     boxplot((temphdistmax),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
     title(['Hdorffmax, Patient = ' num2str(patient)])
+
+    clear tempdicesingle temphdist95 temphdistmax
     end
 else
 end
@@ -66,20 +68,27 @@ end
 
 %% Plot results Patients combined
 if plotresults == true
-    tempdicecombined = Result_dice_combined_single.mod035T2;
+    tempdicecombined = [transpose(Result_dice_combined_single.mod035T2),transpose(Result_dice_combined_single.mod035True),transpose(Result_dice_combined_single.mod15T2)];
     figure()
-    boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
-    title(['Patient = ' num2str(patient)])
-    
-    temphdist95 = transpose(table2array(struct2table(Result_hdistD95(patient).mod)));
+    boxplot((tempdicecombined),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+    title(['Combined dice single'])
+
+    tempdicecombinedmism = [transpose(Result_dice_combined_mismatch.mod035T2),transpose(Result_dice_combined_mismatch.mod035True),transpose(Result_dice_combined_mismatch.mod15T2)];
+    figure()
+    boxplot((tempdicecombinedmism),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+    title(['Combined dice mismatch'])
+
+    temphdist95 = [transpose(Result_hdistD95_combined.mod035T2),transpose(Result_hdistD95_combined.mod035True),transpose(Result_hdistD95_combined.mod15T2)];
     figure()
     boxplot((temphdist95),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
-    title(['Hdorff95, Patient = ' num2str(patient)])
-    
-    temphdistmax = transpose(table2arvremoray(struct2table(Result_hdistDmax(patient).mod)));
+    title(['Combined hausdorff 95th'])
+
+    temphdistmax = [transpose(Result_hdistmax_combined.mod035T2),transpose(Result_hdistmax_combined.mod035True),transpose(Result_hdistmax_combined.mod15T2)];
     figure()
     boxplot((temphdistmax),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
-    title(['Hdorffmax, Patient = ' num2str(patient)])
+    title(['Combined hausdorff max'])
+
+    clear tempdicecombinedmism tempdicecombined temphdistmax temphdist95
 else
 end
 
