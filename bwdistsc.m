@@ -58,6 +58,14 @@ function [D,Index]=bwdistsc(bw,aspect)
 % dimensions in Matlab. Signal, Image and Video Processing      %
 % DOI: 10.1007/s11760-012-0419-9.                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Altered by Boaz Kalkhoven (2022) to also return the indices   %
+% of the closest non-zero entries within the matrix.            %
+%                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 % parse inputs
 if(nargin<2 || isempty(aspect)) aspect=[1 1 1]; end
 % determine geometry of the data
