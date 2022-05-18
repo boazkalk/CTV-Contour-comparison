@@ -1,4 +1,4 @@
-function [D,Index]=bwdistsc(bw,aspect)
+function D=bwdistsc(bw,aspect)
 % D=BWDISTSC(BW,ASPECT)
 % BWDISTSC computes Euclidean distance transform of a binary 3D image BW. 
 % Distance transform assigns to each pixel in BW a number that is the 
@@ -69,8 +69,7 @@ if(length(aspect)==2) aspect=[aspect,1]; end
 % allocate internal memory
 D=cell(1,shape(3)); 
 for k=1:shape(3) D{k}=zeros(shape(1:2)); end
-Indexes=cell(1,shape(3)); 
-for k=1:shape(3) Indexes{k}=zeros(shape(1:2)); end
+Indexes=zeros(shape); 
 
 %%%%%%%%%%%%% scan along XY %%%%%%%%%%%%%%%%
 for k=1:shape(3)    
@@ -157,20 +156,13 @@ for k=1:shape(3)
         end
     end
     D{k}=D1; 
-    if isempty(find(ind))==1
-        Indexes{k} = ind;
-    else
-        Indexes{k} = ind+((k-1)*shape(1)*shape(2));
-    end
+    if i
+    Indexes(:,:,k) = ind+((k-1)*shape(1)*shape(2));
 end
 %%%%%%%%%%%%% scan along Z %%%%%%%%%%%%%%%%
 D1=cell(size(D));
 for k=1:shape(3) 
   D1{k}=repmat(Inf,shape(1:2)); 
-end
-Indexes_2 = cell(size(Indexes));
-for k=1:shape(3) 
-  Indexes_2{k}=zeros(shape(1:2)); 
 end
 % start building the envelope 
 p=shape(3);
@@ -188,10 +180,8 @@ for k=1:shape(3)
     
     % check which points are valid starting points, & update the envelop
     dtmp=D{k}+aspect(3)^2*(p-k)^2;
-    indtmp=Indexes{k};
     L=D1{p}>dtmp; 
-    D1{p}(L)=dtmp(L);   
-    Indexes_2{p}(L) = indtmp(L);    
+    D1{p}(L)=dtmp(L);    
     
     % map_lower keeps track of which pixels can be yet updated with the 
     % new distance, i.e. all such XY that had been under the envelop for
@@ -205,13 +195,11 @@ for k=1:shape(3)
     for kk=p-1:-1:1
         % new values for D
         dtmp=D{k}(idx_lower)+aspect(3)^2*(kk-k)^2;
-        indtmp=Indexes{k}(idx_lower);
-       
+                    
         % these pixels are to be updated
         L=D1{kk}(idx_lower)>dtmp;
         map_lower(idx_lower)=L;
         D1{kk}(idx_lower(L))=dtmp(L);
-        Indexes_2{kk}(idx_lower(L)) = indtmp(L);
                     
         % other pixels are removed from scan
         idx_lower=idx_lower(L);
@@ -225,8 +213,6 @@ if(iscell(bw))
     for k=1:shape(3) D{k}=sqrt(D1{k}); end
 else
     D=zeros(shape);
-    Index=zeros(shape);
     for k=1:shape(3) D(:,:,k)=sqrt(D1{k}); end
-    for k=1:shape(3) Index(:,:,k)=Indexes_2{k}; end
 end
 end

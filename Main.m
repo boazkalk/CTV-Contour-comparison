@@ -2,8 +2,8 @@ clear all
 close all
 
 %%
-plotresults_solo = 0;
-plotresults_comb = 1;
+plotresults_solo = 1;
+plotresults_comb = 0;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
@@ -41,7 +41,7 @@ Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_spe
 [Result_hdistD95, Result_hdistDmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
 %% Plot results Patients solo
-plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax);
+plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax,nr_patients);
 
 %% Results Patients together
 [Result_dice_combined_single, Result_dice_combined_mismatch, Result_hdistD95_combined, Result_hdistmax_combined] = combineresults(nr_patients, Result_dice_single, Result_dice_mismatch, ...
@@ -49,3 +49,11 @@ plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax
 
 %% Plot results Patients combined
 plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_combined_mismatch,Result_hdistD95_combined,Result_hdistmax_combined);
+
+%% 
+figure()
+[x y z] = ind2sub(size(Proc_Pat_delin(1).mod(1).specialist(1).TDmask), find(Proc_Pat_delin(1).mod(1).specialist(1).TDmask));
+plot3(x, y, z, 'k.');
+[x2 y2 z2] = ind2sub(size(Proc_Pat_delin(1).mod(1).specialist(1).TDmask), find(Proc_Pat_delin(1).mod(1).specialist(2).TDmask));
+hold on
+plot3(x2, y2, z2, 'r.');
