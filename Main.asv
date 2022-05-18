@@ -51,3 +51,5 @@ plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax
 plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_combined_mismatch,Result_hdistD95_combined,Result_hdistmax_combined);
 
 %% 
+Proc_Pat_delin(1).mod(1).specialist(1).TDmask
+surf(X,Y,Z,'Cdata',C)
