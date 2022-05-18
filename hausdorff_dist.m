@@ -8,6 +8,9 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
                     grid = nchoosek(v,2);
 
                     aspect = Proc_Pat_delin(i).mod(j).specialist(1).Image_Aspect_Ratio;  
+
+                    D95ar = [];
+                    Dar =[];
                     
                     for t = 1:1:length(grid)
                     combi = grid(t,:);
@@ -20,8 +23,12 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
                     hold on
                     blockPlot(mask2,[0 0 0], 'facecolor','k', 'facealpha',.5);
                     hold on
-                    [x y z]=ind2sub(size(mask1),idx);
-                    plot3(x, y, z-10, 'go-');
+                    tempmask = zeros(size(mask1));
+                    tempmask(idx(1))=1;
+                    tempmask(idx(2))=1;
+                    blockPlot(tempmask,[0 0 0], 'facecolor','g', 'facealpha',1);
+                    %[x y z]=ind2sub(size(mask1),idx);
+                    %plot3(x, y, z-10, 'go-');
 
                     D95ar(t) = D95;
                     Dar(t) = D;
