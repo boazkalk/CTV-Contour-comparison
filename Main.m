@@ -4,6 +4,8 @@ close all
 %%
 plotresults_solo = 0;
 plotresults_comb = 0;
+plotresults_solo_intermod = 1;
+plotresults_comb_intermod = 1;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
@@ -31,6 +33,8 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
+%% Intra modality results
+
 % Calculate the inter specialist, intra modality volume dice coefficient
 Result_dice_single_intramod = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
@@ -46,11 +50,12 @@ Result_dice_mismatch_intramod = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
     Result_hdistmax_combined_intramod] = combineresults(nr_patients, Result_dice_single_intramod, Result_dice_mismatch_intramod, ...
     Result_hdistD95_intramod, Result_hdistDmax_intramod);
 
-%% Plot results Patients solo
-plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax,nr_patients);
+%% Plot results Patients solo intramod
+plotressolo(plotresults_solo,Result_dice_single_intramod,Result_hdistD95_intramod,Result_hdistDmax_intramod,nr_patients);
 
-%% Plot results Patients combined
-plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_combined_mismatch,Result_hdistD95_combined,Result_hdistmax_combined);
+%% Plot results Patients combined intramod
+plotrescomb(plotresults_comb,Result_dice_combined_single_intramod,Result_dice_combined_mismatch_intramod,Result_hdistD95_combined_intramod ...
+    ,Result_hdistmax_combined_intramod);
 
 %% Inter modality results
 
@@ -60,3 +65,6 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 % Calculate max + 95th percentile hausdorff distance, intra specialist,
 % inter modality 
 [Result_hdistD95_intermod, Result_hdistDmax_intermod] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
+
+%% Plot results Patients solo intermod
+plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdistD95_intermod,Result_hdistDmax_intermod,nr_patients)
