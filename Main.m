@@ -3,7 +3,7 @@ close all
 
 %%
 plotresults_solo = 0;
-plotresults_comb = 1;
+plotresults_comb = 0;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
@@ -31,23 +31,32 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
-% Calculate the inter modality volume dice coefficient
-Result_dice_single = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+% Calculate the inter specialist, intra modality volume dice coefficient
+Result_dice_single_intramod = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
 % Calculate the CTV mismatch
-Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
+Result_dice_mismatch_intramod = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
-% Calculate max + 95th percentile hausdorff distance 
-[Result_hdistD95, Result_hdistDmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
+% Calculate max + 95th percentile hausdorff distance, inter specialist,
+% intra modality
+[Result_hdistD95_intramod, Result_hdistDmax_intramod] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
+
+% Results Patients together
+[Result_dice_combined_single_intramod, Result_dice_combined_mismatch_intramod, Result_hdistD95_combined_intramod,... 
+    Result_hdistmax_combined_intramod] = combineresults(nr_patients, Result_dice_single_intramod, Result_dice_mismatch_intramod, ...
+    Result_hdistD95_intramod, Result_hdistDmax_intramod);
 
 %% Plot results Patients solo
 plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax,nr_patients);
 
-%% Results Patients together
-[Result_dice_combined_single, Result_dice_combined_mismatch, Result_hdistD95_combined, Result_hdistmax_combined] = combineresults(nr_patients, Result_dice_single, Result_dice_mismatch, ...
-    Result_hdistD95, Result_hdistDmax);
-
 %% Plot results Patients combined
 plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_combined_mismatch,Result_hdistD95_combined,Result_hdistmax_combined);
 
-%% 
+%% Inter modality results
+
+% Calculate the inter modality, intra specialist volume dice coefficient
+Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+
+% Calculate max + 95th percentile hausdorff distance, intra specialist,
+% inter modality 
+[Result_hdistD95_intermod, Result_hdistDmax_intermod] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);

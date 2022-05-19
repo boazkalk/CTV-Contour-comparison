@@ -1,22 +1,23 @@
-function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
+function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
 
     for i = 1:1:nr_patients
-            for j = 1:1:nr_mod
+            for j = 1:1:nr_specialists
                     % set up search grid to compare every 3D mask of every
                     % specialist
-                    v = 1:nr_specialists;
+                    v = 1:nr_mod;
                     grid = nchoosek(v,2);
-
-                    aspect = Proc_Pat_delin(i).mod(j).specialist(1).Image_Aspect_Ratio;  
-
-                    D95ar = [];
-                    Dar =[];
                     
                     for t = 1:1:length(grid)
+                    
                     combi = grid(t,:);
-                    mask1 = Proc_Pat_delin(i).mod(j).specialist(combi(1)).TDmask;
-                    mask2 = Proc_Pat_delin(i).mod(j).specialist(combi(2)).TDmask;
-                    [D,D95,idx]=bwhdist2(mask1,mask2,aspect);
+
+                    mask1 = Proc_Pat_delin(i).mod(combi(1)).specialist(j).TDmask;
+                    mask2 = Proc_Pat_delin(i).mod(combi(2)).specialist(j).TDmask;
+
+                    aspect1 = Proc_Pat_delin(i).mod(combi(1)).specialist(j).Image_Aspect_Ratio;  
+                    aspect2 = Proc_Pat_delin(i).mod(combi(2)).specialist(j).Image_Aspect_Ratio;
+
+                    [D,D95,idx]=bwhdist2(mask1,mask2,aspect1,aspect2);
 
 %                     figure()
 %                     blockPlot(mask1, [0 0 0], 'facecolor','r', 'facealpha',1);
@@ -32,17 +33,21 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
                     Dar(t) = D;
                     end
     
-                    Result_D95(i).mod(j).D95 = D95ar;
-                    Result_Dmax(i).mod(j).Dmax = Dar;
+                    Result_D95(i).spec(j).O35T2vsTrue = D95ar(1);
+                    Result_D95(i).spec(j).O35T2vs15T2 = D95ar(2);
+                    Result_D95(i).spec(j).O35Truevs15T2 = D95ar(3);
+                    Result_Dmax(i).spec(j).O35T2vsTrue = Dar(1);
+                    Result_Dmax(i).spec(j).O35T2vs15T2 = Dar(2);
+                    Result_Dmax(i).spec(j).O35Truevs15T2 = Dar(3);
             
             end
     end
 
 end
 
-function [D,D95,idx]=bwhdist2(A,B,aspect)
-    [d_AB,d95_AB,idx_AB]=dir_hdist2(A,B,aspect);
-    [d_BA,d95_BA,idx_BA]=dir_hdist2(B,A,aspect);
+function [D,D95,idx]=bwhdist2(A,B,aspect1,aspect2)
+    [d_AB,d95_AB,idx_AB]=dir_hdist2(A,B,aspect2);
+    [d_BA,d95_BA,idx_BA]=dir_hdist2(B,A,aspect1);
     if(d_AB>d_BA)
         D=d_AB;
         idx=idx_AB;
