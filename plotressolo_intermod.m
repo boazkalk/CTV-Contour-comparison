@@ -6,7 +6,7 @@ function plotressolo_intermod(plotresults_solo,Result_dice_intermod,Result_hdist
         tempdicesingle = table2array(struct2table(Result_dice_intermod(patient).spec));
         figure()
         boxplot((tempdicesingle),'Labels',{'0.35T2vs0.35Truefi','0.35T2vs1.5T2','0.35Truefivs1.5T2'})
-        title(['Dice single, Patient = ' num2str(patient)])
+        title(['Dice single, Patient = ' num2str(patient)])  
         xlabel('Image modality comparison')
         ylabel('Distance (mm)')
         

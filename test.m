@@ -1,33 +1,26 @@
-clear all
-close all
 
-aspect = [1.5,1.5,3];
+mask1 = Proc_Pat_delin(1).mod(1).specialist(2).TDmask;
+mask2 = Proc_Pat_delin(1).mod(3).specialist(2).TDmask;
 
-mask1(:,:,1) = [0 0 0 0;0 0 0 0;0 0 0 0; 0 0 0 0];
-mask1(:,:,2) = [0 0 0 0;0 1 1 0;0 1 1 0; 0 0 0 0];
-mask1(:,:,3) = [0 0 0 0;0 1 1 0;0 1 1 0; 0 0 0 0];
-mask1(:,:,4) = [0 0 0 0;0 0 0 0;0 0 0 0; 0 0 0 0];
+aspect1 = Proc_Pat_delin(1).mod(1).specialist(2).Image_Aspect_Ratio;  
+aspect2 = Proc_Pat_delin(1).mod(3).specialist(2).Image_Aspect_Ratio;
 
-mask2(:,:,1) = [0 0 0 0;0 0 0 0;0 0 0 0; 0 0 0 0];
-mask2(:,:,2) = [0 0 0 0;0 1 1 0;0 1 1 1; 0 0 0 0];
-mask2(:,:,3) = [0 0 0 0;0 1 1 0;0 1 1 0; 0 0 0 0];
-mask2(:,:,4) = [0 0 0 0;0 0 0 0;0 0 1 0; 0 0 0 0];
+[D,D95,idx]=bwhdist2(mask1,mask2,aspect1,aspect2);
 
-[D,D95,idx]=bwhdist2(mask1,mask2,aspect);
-
+%%
 figure()
-blockPlot(mask1, [0 0 0], 'facecolor','r', 'facealpha',1);
-hold on
-blockPlot(mask2,[0 0 0], 'facecolor','k', 'facealpha',.5);
-hold on
 tempmask = zeros(size(mask1));
 tempmask(idx(1))=1;
 tempmask(idx(2))=1;
 blockPlot(tempmask,[0 0 0], 'facecolor','g', 'facealpha',1);
+hold on
+blockPlot(mask1, [0 0 0], 'facecolor','r', 'facealpha',.5);
+hold on
+blockPlot(mask2,[0 0 0], 'facecolor','k', 'facealpha',.5);
 
-function [D,D95,idx]=bwhdist2(A,B,aspect)
-    [d_AB,d95_AB,idx_AB]=dir_hdist2(A,B,aspect);
-    [d_BA,d95_BA,idx_BA]=dir_hdist2(B,A,aspect);
+function [D,D95,idx]=bwhdist2(A,B,aspect1,aspect2)
+    [d_AB,d95_AB,idx_AB]=dir_hdist2(A,B,aspect2);
+    [d_BA,d95_BA,idx_BA]=dir_hdist2(B,A,aspect1);
     if(d_AB>d_BA)
         D=d_AB;
         idx=idx_AB;
@@ -58,3 +51,4 @@ function [D,D95,idx]=dir_hdist2(A,B,aspect)
         idx=[0,0];
     end
 end
+
