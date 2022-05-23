@@ -38,6 +38,7 @@ Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 %% Volume
 Tumorvolumes = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
+% Plot volume results
 plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients);
 
 %% Intra modality results
