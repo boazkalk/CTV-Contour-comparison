@@ -6,6 +6,8 @@ plotresults_solo = 0;
 plotresults_comb = 0;
 plotresults_solo_intermod = 1;
 plotresults_comb_intermod = 1;
+plotresults_vol = 1;
+plotresults_vol_comb = 1;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
@@ -34,7 +36,9 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
 %% Volume
-Proc_Pat_delin = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+Tumorvolumes = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+
+plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients);
 
 %% Intra modality results
 
