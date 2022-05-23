@@ -2,17 +2,17 @@ clear all
 close all
 
 %%
-plotresults_solo = 0;
-plotresults_comb = 0;
-plotresults_solo_intermod = 1;
-plotresults_comb_intermod = 1;
-plotresults_vol = 1;
-plotresults_vol_comb = 1;
+plotresults_solo = 1;
+plotresults_comb = 1;
+plotresults_solo_intermod = 0;
+plotresults_comb_intermod = 0;
+plotresults_vol = 0;
+plotresults_vol_comb = 0;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
 % Data folder -> Patients -> Modalities -> Specialists
-folderpath = 'C:\School\Master\Stage\Matlab\testdata';
+folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt';
 temp_nr_patients = struct2cell(dir(folderpath));
 [~,nr_patients] = size(find(contains(temp_nr_patients(1,:),'PAT')));
 
@@ -35,7 +35,7 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
-%% Volume
+%% Volume calculation of tumors
 Tumorvolumes = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
 % Plot volume results
@@ -78,7 +78,7 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 [Result_dice_intermod_combined, Result_hdistD95_intermod_combined, Result_hdistDmax_intermod_combined] = ...
 combineresults_intermod(Result_dice_intermod, Result_hdistD95_intermod, Result_hdistDmax_intermod, nr_patients);
 
-%% Plot results Patients solo intermod
+%% Plot results Patients solo intermodality
 plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdistD95_intermod,Result_hdistDmax_intermod,nr_patients)
 
 % Plot results patients combined intermod

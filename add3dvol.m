@@ -23,7 +23,7 @@ function Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_special
                 % Put 3D mask in 3D matrix 
                 temp_masks = Proc_Pat_delin(i).mod(j).specialist(k).masks;  
                 TDmask = cat(3, temp_masks(:).mask);
-                TDmask = cat(3, zeros(imagesize(1),imagesize(2),index), TDmask, zeros(imagesize(1),imagesize(2),(length(refslices)-length(temp_masks)-index)));
+                TDmask = cat(3, zeros(imagesize(1),imagesize(2),index-1), TDmask, zeros(imagesize(1),imagesize(2),(length(refslices)-length(temp_masks)-index-1)));
                 %volumeViewer(TDmask);
                 Proc_Pat_delin(i).mod(j).specialist(k).TDmask = TDmask;
             end

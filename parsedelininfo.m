@@ -7,6 +7,8 @@ function Specialist_CTV = parsedelininfo(pat_pathname, specialists)
         specialist_pathname = strcat(pat_pathname,'\',specialists(j));
         temp_struct = dir(strcat(specialist_pathname,'\RTSTRUCT*.dcm'));
         filename = temp_struct.name;
+        %disp(filename);
+        RTstruct = struct([]);
         RTstruct = dicominfo(strcat(temp_struct.folder,'\',filename));
         Specialist_struct(j) = RTstruct;
 
@@ -39,7 +41,7 @@ function Specialist_CTV = parsedelininfo(pat_pathname, specialists)
         Specialist_CTV(j).Imagesize = size(slice);
         Aspect_ratio = [transpose(Image_information.PixelSpacing), Image_information.SliceThickness];
         Specialist_CTV(j).Image_Aspect_Ratio = Aspect_ratio;
-
+        %disp(strcat('spec ', num2str(j)));
     end
-
+%disp('done')
 end
