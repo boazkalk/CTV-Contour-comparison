@@ -33,6 +33,9 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
+%% Volume
+Proc_Pat_delin = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
+
 %% Intra modality results
 
 % Calculate the inter specialist, intra modality volume dice coefficient
@@ -75,3 +78,4 @@ plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdist
 
 % Plot results patients combined intermod
 plotrescomb_intermod(plotresults_comb_intermod, Result_dice_intermod_combined, Result_hdistD95_intermod_combined, Result_hdistDmax_intermod_combined);
+
