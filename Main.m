@@ -4,8 +4,8 @@ close all
 %%
 plotresults_solo = 0;
 plotresults_comb = 0;
-plotresults_solo_intermod = 0;
-plotresults_comb_intermod = 0;
+plotresults_solo_intermod = 1;
+plotresults_comb_intermod = 1;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
@@ -66,10 +66,12 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 % inter modality 
 [Result_hdistD95_intermod, Result_hdistDmax_intermod] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
-%%
+% Results Patients together
 [Result_dice_intermod_combined, Result_hdistD95_intermod_combined, Result_hdistDmax_intermod_combined] = ...
 combineresults_intermod(Result_dice_intermod, Result_hdistD95_intermod, Result_hdistDmax_intermod, nr_patients);
 
-
 %% Plot results Patients solo intermod
 plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdistD95_intermod,Result_hdistDmax_intermod,nr_patients)
+
+% Plot results patients combined intermod
+plotrescomb_intermod(plotresults_comb_intermod, Result_dice_intermod_combined, Result_hdistD95_intermod_combined, Result_hdistDmax_intermod_combined);
