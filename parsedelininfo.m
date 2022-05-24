@@ -11,6 +11,7 @@ function Specialist_CTV = parsedelininfo(pat_pathname, specialists)
         RTstruct = struct([]);
         RTstruct = dicominfo(strcat(temp_struct.folder,'\',filename));
         Specialist_struct(j) = RTstruct;
+        Specialist_CTV(j).struct = RTstruct;
 
         % Go down in RTSTRUCT and find the specialist's contour for that
         % patient and modality
