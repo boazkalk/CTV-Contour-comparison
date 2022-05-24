@@ -9,7 +9,7 @@ function Specialist_CTV = parsedelininfo(pat_pathname, specialists)
         filename = temp_struct.name;
         %disp(filename);
         RTstruct = struct([]);
-        RTstruct = dicominfo(strcat(temp_struct.folder,'\',filename));
+        RTstruct = dicominfo(strcat(temp_struct.folder,'\',filename),'UseDictionaryVR',true,'UseVRHeuristic',false);
         Specialist_struct(j) = RTstruct;
         Specialist_CTV(j).struct = RTstruct;
 

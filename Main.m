@@ -35,22 +35,22 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
-%%
-mask = Proc_Pat_delin.mod(1).specialist(1).TDmask;
-folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt\PAT1\0.35T2\HPN';
-temp_nr_patients = struct2cell(dir(folderpath));
-temp_nr_patients = sort(temp_nr_patients(1,:));
-j=1;
-image=[];
-for i=3:1:length(temp_nr_patients)-1
-    disp(strcat(folderpath,'\',temp_nr_patients{1,i}));
-    slice = dicomread(dicominfo(strcat(folderpath,'\',temp_nr_patients{1,i})));
-    image(:,:,j) = slice;
-    j=j+1;
-end
-%volumeViewer(mask);
-volumeViewer(image);
-%volumeViewer(image, mask);
+% %%
+% mask = Proc_Pat_delin.mod(2).specialist(1).TDmask;
+% folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt\PAT1\0.35Truefi\HPN';
+% temp_nr_patients = struct2cell(dir(folderpath));
+% temp_nr_patients = sort(temp_nr_patients(1,:));
+% j=1;
+% image=[];
+% for i=3:1:length(temp_nr_patients)-1
+%     disp(strcat(folderpath,'\',temp_nr_patients{1,i}));
+%     slice = dicomread(dicominfo(strcat(folderpath,'\',temp_nr_patients{1,i})));
+%     image(:,:,j) = slice;
+%     j=j+1;
+% end
+% %volumeViewer(mask);
+% %volumeViewer(image);
+% volumeViewer(image, mask);
 
 %% Volume calculation of tumors
 Tumorvolumes = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
