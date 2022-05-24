@@ -8,6 +8,11 @@ function plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patien
             tempdicesingle(:,3) = table2array(struct2table(Tumorvolumes(i).mod(3).specialist));            
             figure()
             boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+%             h = findobj(gca,'Tag','Box');
+%             colors = [0.3010, 0.7450, 0.9330];
+%             for j=1:length(h)
+%                 patch(get(h(j),'XData'),get(h(j),'YData'),colors,'FaceAlpha',.35);
+%             end
             title(['Volume, Patient = ' num2str(patient)])
             xlabel('Image modality')
             ylabel('Tumor volume mm3')

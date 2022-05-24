@@ -4,10 +4,10 @@ close all
 %%
 plotresults_solo = 1;
 plotresults_comb = 1;
-plotresults_solo_intermod = 0;
-plotresults_comb_intermod = 0;
-plotresults_vol = 0;
-plotresults_vol_comb = 0;
+plotresults_solo_intermod = 1;
+plotresults_comb_intermod = 1;
+plotresults_vol = 1;
+plotresults_vol_comb = 1;
 
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
