@@ -35,7 +35,7 @@ Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists);
 % Combine the 2D contours in a 3D volume
 Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 
-% %%
+%%
 % mask = Proc_Pat_delin.mod(2).specialist(1).TDmask;
 % folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt\PAT1\0.35Truefi\HPN';
 % temp_nr_patients = struct2cell(dir(folderpath));

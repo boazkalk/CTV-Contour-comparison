@@ -1,5 +1,5 @@
 function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
-
+    
     for i = 1:1:nr_patients
             for j = 1:1:nr_mod
                     % set up search grid to compare every 3D mask of every
@@ -29,14 +29,21 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
 %                     blockPlot(tempmask,[0 0 0], 'facecolor','g', 'facealpha',1);
                    
                     D95ar(t) = D95;
-                    Dar(t) = D;
+                    Dar(t) = D;  
                     end
     
                     Result_D95(i).mod(j).D95 = D95ar;
                     Result_Dmax(i).mod(j).Dmax = Dar;
-            
-            end
+                    
+            end   
+                if i == 1 
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
+                else
+                close(f)
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
+                end
     end
+    close(f)
 
 end
 

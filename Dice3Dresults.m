@@ -12,10 +12,19 @@ function Result_dice = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_spec
                     mask1 = Proc_Pat_delin(i).mod(j).specialist(combi(1)).TDmask;
                     mask2 = Proc_Pat_delin(i).mod(j).specialist(combi(2)).TDmask;
                     similarity(t) = dice(mask1, mask2);
+
+                    totalsteps = nr_patients*nr_mod*length(grid);
+                        if i == 1 && j == 1 && t == 1
+                        f = waitbar((i*j*t)/totalsteps,'Calculating dice...');
+                        else
+                        close(f)
+                        f = waitbar((i*j*t)/totalsteps,'Calculating dice...');
+                        end
                     end
     
                     Result_dice(i).mod(j).dice = similarity;
             
             end
     end
+    close(f)
 end

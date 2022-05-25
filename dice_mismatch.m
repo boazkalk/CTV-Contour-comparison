@@ -20,9 +20,19 @@ function Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
     
                 %volumeViewer(mask_intersect);
                 %volumeViewer(mask_union);
+                totalsteps = nr_patients*nr_mod*nr_specialists;
+                    if i == 1 && j == 1 && k == 2
+                    f = waitbar((i*j*k)/totalsteps,'Calculating dice mismatch...');
+                    else
+                    close(f)
+                    f = waitbar((i*j*k)/totalsteps,'Calculating dice mismatch...');
+                    end
+
+
             end
             Dice_mismatch = dice(mask_intersect, mask_union);
             Result_dice_mismatch(i).mod(j).dice = Dice_mismatch;
         end
     end
+    close(f)
 end
