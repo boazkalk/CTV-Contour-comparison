@@ -12,7 +12,7 @@ function volumeincluded = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr
                         mask = Proc_Pat_delin(i).mod(j).specialist(k).masks(v).mask;
                         %imshow(mask)
                         area = bwarea(mask);
-                        area = area*aspect(1)^2;
+                        area = area*aspect(1)*aspect(2);
                         volume = volume+area*aspect(3);
                     end
                     Result(i).mod(j).specialist(k).Tumorvolume = volume;
