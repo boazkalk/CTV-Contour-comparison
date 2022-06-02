@@ -1,13 +1,13 @@
-function plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients)
+function plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod)
         if plotresults_vol == true
             for i = 1:1:nr_patients
             tempdicesingle = [];
             patient = i;
-            tempdicesingle(:,1) = table2array(struct2table(Tumorvolumes(i).mod(1).specialist));
-            tempdicesingle(:,2) = table2array(struct2table(Tumorvolumes(i).mod(2).specialist));
-            tempdicesingle(:,3) = table2array(struct2table(Tumorvolumes(i).mod(3).specialist));            
+            for k = 1:1:length(mod)
+            tempdicesingle(:,k) = table2array(struct2table(Tumorvolumes(i).mod(k).specialist));   
+            end
             figure()
-            boxplot((tempdicesingle),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+            boxplot((tempdicesingle),'Labels',mod)
 %             h = findobj(gca,'Tag','Box');
 %             colors = [0.3010, 0.7450, 0.9330];
 %             for j=1:length(h)
@@ -19,16 +19,17 @@ function plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patien
             end
         else end
         if plotresults_vol_comb == true
-            temp1=[];temp2=[];temp3 = [];
-            for i = 1:1:nr_patients
-            patient = i;
-            temp1 = [temp1; table2array(struct2table(Tumorvolumes(i).mod(1).specialist))];
-            temp2 = [temp2; table2array(struct2table(Tumorvolumes(i).mod(2).specialist))];
-            temp3 = [temp3; table2array(struct2table(Tumorvolumes(i).mod(3).specialist))];
-            end
-            Vol_comb = [temp1, temp2, temp3];
+
+            for k = 1:1:length(mod)
+                temp = [];
+                for i = 1:1:nr_patients
+                    temp = [temp; table2array(struct2table(Tumorvolumes(i).mod(k).specialist))];
+                end
+                Vol_comb(:,k) = temp;
+            end            
+            
             figure()
-            boxplot((Vol_comb),'Labels',{'0.35T2','0.35TrueFi','1.5T2'})
+            boxplot((Vol_comb),'Labels',mod)
             title('Volume combined')
             xlabel('Image modality')
             ylabel('Tumor volume mm3')

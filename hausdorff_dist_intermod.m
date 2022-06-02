@@ -4,18 +4,18 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
             for j = 1:1:nr_specialists
                     % set up search grid to compare every 3D mask of every
                     % specialist
-                    v = 1:nr_mod;
-                    grid = nchoosek(v,2);
-                    
-                    for t = 1:1:length(grid)
-                    
-                    combi = grid(t,:);
+%                     v = 1:nr_mod;
+%                     grid = nchoosek(v,2);
+%                     
+%                     for t = 1:1:length(grid)
+%                     
+%                     combi = grid(t,:);
 
-                    mask1 = Proc_Pat_delin(i).mod(combi(1)).specialist(j).TDmask;
-                    mask2 = Proc_Pat_delin(i).mod(combi(2)).specialist(j).TDmask;
+                    mask1 = Proc_Pat_delin(i).mod(1).specialist(j).TDmask;
+                    mask2 = Proc_Pat_delin(i).mod(2).specialist(j).TDmask;
 
-                    aspect1 = Proc_Pat_delin(i).mod(combi(1)).specialist(j).Image_Aspect_Ratio;  
-                    aspect2 = Proc_Pat_delin(i).mod(combi(2)).specialist(j).Image_Aspect_Ratio;
+                    aspect1 = Proc_Pat_delin(i).mod(1).specialist(j).Image_Aspect_Ratio;  
+                    aspect2 = Proc_Pat_delin(i).mod(2).specialist(j).Image_Aspect_Ratio;
 
                     [D,D95,idx]=bwhdist2(mask1,mask2,aspect1,aspect2);
 
@@ -29,16 +29,16 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
 %                     tempmask(idx(2))=1;
 %                     blockPlot(tempmask,[0 0 0], 'facecolor','g', 'facealpha',1);
                    
-                    D95ar(t) = D95;
-                    Dar(t) = D;
-                    end
+%                     D95ar(t) = D95;
+%                     Dar(t) = D;
+                    %end
     
-                    Result_D95(i).spec(j).O35T2vsTrue = D95ar(1);
-                    Result_D95(i).spec(j).O35T2vs15T2 = D95ar(2);
-                    Result_D95(i).spec(j).O35Truevs15T2 = D95ar(3);
-                    Result_Dmax(i).spec(j).O35T2vsTrue = Dar(1);
-                    Result_Dmax(i).spec(j).O35T2vs15T2 = Dar(2);
-                    Result_Dmax(i).spec(j).O35Truevs15T2 = Dar(3);
+                    %Result_D95(i).spec(j).O35T2vsTrue = D95ar(1);
+                    %Result_D95(i).spec(j).O35T2vs15T2 = D95ar(2);
+                    Result_D95(i).spec(j).O35Truevs15T2 = D95;
+                    %Result_Dmax(i).spec(j).O35T2vsTrue = Dar(1);
+                    %Result_Dmax(i).spec(j).O35T2vs15T2 = Dar(2);
+                    Result_Dmax(i).spec(j).O35Truevs15T2 = D;
             
             end
     end
