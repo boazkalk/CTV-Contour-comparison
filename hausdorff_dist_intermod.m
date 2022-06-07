@@ -48,7 +48,7 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
                 f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
                 end
     end
-
+close(f)
 end
 
 function [D,D95,idx]=bwhdist2(A,B,aspect1,aspect2)

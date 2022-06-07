@@ -18,4 +18,5 @@ function Result_dice = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
                 f = waitbar((i)/nr_patients,'Calculating Dice coefficients...');
                 end
     end
+    close(f)
 end
