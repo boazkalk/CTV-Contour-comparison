@@ -41,6 +41,12 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
                     Result_Dmax(i).spec(j).O35Truevs15T2 = D;
             
             end
+                if i == 1 
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
+                else
+                close(f)
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
+                end
     end
 
 end

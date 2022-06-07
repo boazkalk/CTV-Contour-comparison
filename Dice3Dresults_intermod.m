@@ -11,5 +11,11 @@ function Result_dice = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
                     Result_dice(i).spec(j).O35Truevs15T2 = similarity;
             
             end
+                if i == 1 
+                f = waitbar((i)/nr_patients,'Calculating Dice coefficients...');
+                else
+                close(f)
+                f = waitbar((i)/nr_patients,'Calculating Dice coefficients...');
+                end
     end
 end

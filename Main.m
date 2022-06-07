@@ -14,7 +14,7 @@ plotresults_vol_comb_diff = 1;
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
 % Data folder -> Patients -> Modalities -> Specialists
-folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt';
+folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt3';
 temp_nr_patients = struct2cell(dir(folderpath));
 [~,nr_patients] = size(find(contains(temp_nr_patients(1,:),'PAT')));
 
