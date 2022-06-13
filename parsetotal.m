@@ -11,7 +11,7 @@ function Pat_delin = parsetotal(folderpath, nr_patients,mod,specialists)
             mod_pathname = strcat(pat_pathname, '\', mod(k));
             
             % Parse information from RTSTRUCT
-            Specialist_CTV = parsedelininfo(mod_pathname, specialists);
+            Specialist_CTV = parsedelininfo(mod_pathname, specialists,mod(k));
 
             % Put information at right place within struct
             Delin(k).specialist = Specialist_CTV;

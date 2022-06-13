@@ -1,7 +1,9 @@
 function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
 
     for i = 1:1:nr_patients
+        %disp(strcat('pat=', num2str(i)));
             for j = 1:1:nr_specialists
+                %disp(strcat('spec=', num2str(j)));
                     % set up search grid to compare every 3D mask of every
                     % specialist
 %                     v = 1:nr_mod;
@@ -41,11 +43,12 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
                     Result_Dmax(i).spec(j).O35Truevs15T2 = D;
             
             end
+
                 if i == 1 
-                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances intermod...');
                 else
                 close(f)
-                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances intermod...');
                 end
     end
 close(f)

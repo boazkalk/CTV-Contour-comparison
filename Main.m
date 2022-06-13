@@ -1,24 +1,14 @@
 clear all
 close all
 
-%%
-plotresults_solo = 1;
-plotresults_comb = 1;
-plotresults_solo_intermod = 1;
-plotresults_comb_intermod = 1;
-plotresults_vol = 1;
-plotresults_vol_comb = 1;
-plotresults_vol_diff = 1;
-plotresults_vol_comb_diff = 1;
-
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
 % Data folder -> Patients -> Modalities -> Specialists
-folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt3';
+folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt6';
 temp_nr_patients = struct2cell(dir(folderpath));
 [~,nr_patients] = size(find(contains(temp_nr_patients(1,:),'PAT')));
 
-% Modalities for this study are 0.35T T2 & Truefi and the 1.5T T2
+% Modalities for this study are 0.35T Truefi and the 1.5T T2
 mod = ["0.35Truefi" "1.5T2"];
 nr_mod = length(mod);
  
@@ -43,10 +33,6 @@ Tumorvolumes = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialist
 % Volume differences
 Tumorvolumediff = calcvoldiff(Tumorvolumes,nr_patients,nr_specialists);
 
-% Plot volume results
-plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod);
-plotvoldiff(Tumorvolumediff,plotresults_vol_diff,plotresults_vol_comb_diff,nr_patients)
-
 %% Intra modality results
 
 % Calculate the inter specialist, intra modality volume dice coefficient
@@ -64,13 +50,6 @@ Result_dice_mismatch_intramod = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
     Result_hdistmax_combined_intramod] = combineresults(nr_patients, Result_dice_single_intramod, Result_dice_mismatch_intramod, ...
     Result_hdistD95_intramod, Result_hdistDmax_intramod);
 
-%% Plot results Patients solo intramod
-plotressolo(plotresults_solo,Result_dice_single_intramod,Result_hdistD95_intramod,Result_hdistDmax_intramod,nr_patients,mod);
-
-%% Plot results Patients combined intramod
-plotrescomb(plotresults_comb,Result_dice_combined_single_intramod,Result_dice_combined_mismatch_intramod,Result_hdistD95_combined_intramod ...
-    ,Result_hdistmax_combined_intramod,mod);
-
 %% Inter modality results
 
 % Calculate the inter modality, intra specialist volume dice coefficient
@@ -84,9 +63,30 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 [Result_dice_intermod_combined, Result_hdistD95_intermod_combined, Result_hdistDmax_intermod_combined] = ...
 combineresults_intermod(Result_dice_intermod, Result_hdistD95_intermod, Result_hdistDmax_intermod, nr_patients);
 
-%% Plot results Patients solo intermodality
+
+%% Plotting
+plotresults_solo = 1;
+plotresults_comb = 1;
+plotresults_solo_intermod = 1;
+plotresults_comb_intermod = 1;
+plotresults_vol = 1;
+plotresults_vol_comb = 1;
+plotresults_vol_diff = 1;
+plotresults_vol_comb_diff = 1;
+
+% Plot volume results
+plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod);
+plotvoldiff(Tumorvolumediff,plotresults_vol_diff,plotresults_vol_comb_diff,nr_patients)
+
+% Plot results Patients solo intramod
+plotressolo(plotresults_solo,Result_dice_single_intramod,Result_hdistD95_intramod,Result_hdistDmax_intramod,nr_patients,mod);
+
+% Plot results Patients combined intramod
+plotrescomb(plotresults_comb,Result_dice_combined_single_intramod,Result_dice_combined_mismatch_intramod,Result_hdistD95_combined_intramod ...
+    ,Result_hdistmax_combined_intramod,mod);
+
+% Plot results Patients solo intermodality
 plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdistD95_intermod,Result_hdistDmax_intermod,nr_patients)
 
 % Plot results patients combined intermod
 plotrescomb_intermod(plotresults_comb_intermod, Result_dice_intermod_combined, Result_hdistD95_intermod_combined, Result_hdistDmax_intermod_combined);
-

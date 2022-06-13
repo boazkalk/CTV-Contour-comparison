@@ -1,4 +1,4 @@
-function Specialist_CTV = parsedelininfo(pat_pathname, specialists)
+function Specialist_CTV = parsedelininfo(pat_pathname, specialists,mod)
     
     % Loop over all specialists
     for j = 1:1:length(specialists)
@@ -15,7 +15,21 @@ function Specialist_CTV = parsedelininfo(pat_pathname, specialists)
 
         % Go down in RTSTRUCT and find the specialist's contour for that
         % patient and modality
-        Specialist_CTV(j).contour = Specialist_struct(j).ROIContourSequence.Item_2.ContourSequence;
+        for v = 1:1:length(fieldnames(RTstruct.StructureSetROISequence))
+            tempname = eval(strcat('RTstruct.StructureSetROISequence.Item_',num2str(v),'.ROIName'));
+            if strcmp(tempname,'CTV')==1
+                index=v;
+            else end
+        end
+        
+        Specialist_CTV(j).contour = eval(strcat('Specialist_struct(j).ROIContourSequence.Item_',num2str(v),'.ContourSequence'));
+
+        %if strcmp(mod,'0.35Truefi')==1
+        %Specialist_CTV(j).contour = Specialist_struct(j).ROIContourSequence.Item_2.ContourSequence;
+        %elseif strcmp(mod,'1.5T2')==1
+        %Specialist_CTV(j).contour = Specialist_struct(j).ROIContourSequence.Item_1.ContourSequence;
+        %end
+
         amntofcontours = length(fieldnames(Specialist_CTV(j).contour));
         temp = {};
 
