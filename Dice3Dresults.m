@@ -18,8 +18,16 @@ function Result_dice = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_spec
                     mask1 = Proc_Pat_delin(i).mod(j).specialist(combi(1)).TDmask;
                     mask2 = Proc_Pat_delin(i).mod(j).specialist(combi(2)).TDmask;
                     similarity(t) = dice(mask1, mask2);
-                        
+
+%                     g = figure;
+%                     blockPlot(mask1, [0 0 0], 'facecolor','r', 'facealpha',1);
+%                     hold on
+%                     blockPlot(mask2,[0 0 0], 'facecolor','k', 'facealpha',.5);
+%                     title(strcat('Patient=', num2str(i), ', Mod=',num2str(j), ', Specialists=', num2str(combi(1)), 'vs', num2str(combi(2))));
+%                     close(g)
+                    
                     end
+
     
                     Result_dice(i).mod(j).dice = similarity;
             

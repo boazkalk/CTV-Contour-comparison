@@ -10,10 +10,9 @@ function Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
         for j = 1:1:nr_mod
             mask_intersect = Proc_Pat_delin(i).mod(j).specialist(1).TDmask;
             mask_union = Proc_Pat_delin(i).mod(j).specialist(1).TDmask;
-            %volumeViewer(mask_union);
+
             for k = 2:1:nr_specialists
                 mask2 = Proc_Pat_delin(i).mod(j).specialist(k).TDmask;
-                %volumeViewer(mask2);
     
                 temp_mask_union = mask_union+mask2;
                 mask_union = double(logical(temp_mask_union));
@@ -22,8 +21,12 @@ function Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
                 temp_mask_inter(temp_mask_inter<2) = 0;
                 mask_intersect = double(logical(temp_mask_inter));
     
-                %volumeViewer(mask_intersect);
-                %volumeViewer(mask_union);
+%                 g = figure;
+%                 blockPlot(mask_intersect, [0 0 0], 'facecolor','r', 'facealpha',1);
+%                 hold on
+%                 blockPlot(mask_union,[0 0 0], 'facecolor','k', 'facealpha',.5);
+%                 title(strcat('Patient=', num2str(i), ', Mod=',num2str(j)));
+%                 close(g)
 
             end
             Dice_mismatch = dice(mask_intersect, mask_union);

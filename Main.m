@@ -52,10 +52,10 @@ Result_dice_mismatch_intramod = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
 
 %% Inter modality results
 
-% Calculate the inter modality, intra specialist volume dice coefficient
+%% Calculate the inter modality, intra specialist volume dice coefficient
 Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
-% Calculate max + 95th percentile hausdorff distance, intra specialist,
+%% Calculate max + 95th percentile hausdorff distance, intra specialist,
 % inter modality 
 [Result_hdistD95_intermod, Result_hdistDmax_intermod] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 

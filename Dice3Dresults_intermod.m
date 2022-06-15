@@ -14,6 +14,13 @@ function Result_dice = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
                     similarity = dice(mask1, mask2);
 
                     Result_dice(i).spec(j).O35Truevs15T2 = similarity;
+
+%                     g = figure;
+%                     blockPlot(mask1, [0 0 0], 'facecolor','r', 'facealpha',1);
+%                     hold on
+%                     blockPlot(mask2,[0 0 0], 'facecolor','k', 'facealpha',.5);
+%                     title(strcat('Patient=', num2str(i), ', Specialist=',num2str(j)));
+%                     close(g)
             
             end
                 if i == 1 

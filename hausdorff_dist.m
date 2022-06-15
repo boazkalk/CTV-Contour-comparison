@@ -28,7 +28,7 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
                     mask2 = Proc_Pat_delin(i).mod(j).specialist(combi(2)).TDmask;
                     [D,D95,idx]=bwhdist2(mask1,mask2,aspect);
 
-%                     figure()
+%                     g = figure;
 %                     blockPlot(mask1, [0 0 0], 'facecolor','r', 'facealpha',1);
 %                     hold on
 %                     blockPlot(mask2,[0 0 0], 'facecolor','k', 'facealpha',.5);
@@ -37,6 +37,8 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
 %                     tempmask(idx(1))=1;
 %                     tempmask(idx(2))=1;
 %                     blockPlot(tempmask,[0 0 0], 'facecolor','g', 'facealpha',1);
+%                     title(strcat('Patient=', num2str(i), ', Specialist=',num2str(j)));
+%                     close(g)
                    
                     D95ar(t) = D95;
                     Dar(t) = D;  
