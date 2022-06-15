@@ -1,17 +1,15 @@
 function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
 
+% Result_D95_intermod
+%     -> Patients
+%         -> Specialists' 95th percentile hausdorff distance between 0.35T and 1.5T
+% 
+% Result_Dmax_intermod
+%     -> Patients
+%         -> Specialists' max hausdorff distance between 0.35T and 1.5T
+
     for i = 1:1:nr_patients
-        %disp(strcat('pat=', num2str(i)));
             for j = 1:1:nr_specialists
-                %disp(strcat('spec=', num2str(j)));
-                    % set up search grid to compare every 3D mask of every
-                    % specialist
-%                     v = 1:nr_mod;
-%                     grid = nchoosek(v,2);
-%                     
-%                     for t = 1:1:length(grid)
-%                     
-%                     combi = grid(t,:);
 
                     mask1 = Proc_Pat_delin(i).mod(1).specialist(j).TDmask;
                     mask2 = Proc_Pat_delin(i).mod(2).specialist(j).TDmask;
@@ -30,16 +28,8 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
 %                     tempmask(idx(1))=1;
 %                     tempmask(idx(2))=1;
 %                     blockPlot(tempmask,[0 0 0], 'facecolor','g', 'facealpha',1);
-                   
-%                     D95ar(t) = D95;
-%                     Dar(t) = D;
-                    %end
     
-                    %Result_D95(i).spec(j).O35T2vsTrue = D95ar(1);
-                    %Result_D95(i).spec(j).O35T2vs15T2 = D95ar(2);
                     Result_D95(i).spec(j).O35Truevs15T2 = D95;
-                    %Result_Dmax(i).spec(j).O35T2vsTrue = Dar(1);
-                    %Result_Dmax(i).spec(j).O35T2vs15T2 = Dar(2);
                     Result_Dmax(i).spec(j).O35Truevs15T2 = D;
             
             end

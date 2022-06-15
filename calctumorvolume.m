@@ -1,5 +1,8 @@
 function volumeincluded = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists)
-
+% volumeincluded
+%     -> Patients
+%         -> Modalities
+%             -> Specialist volumes in mm3
     for i = 1:1:nr_patients
             for j = 1:1:nr_mod
                 for k = 1:1:nr_specialists

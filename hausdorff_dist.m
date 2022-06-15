@@ -1,4 +1,14 @@
 function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
+% 
+% Result_D95
+%     -> Patients
+%         -> Modalities
+%             -> 95th perc Hausdorff distance between contours of observers (search grid)
+% 
+% Result_Dmax
+%     -> Patients
+%         -> Modalities
+%             -> max Hausdorff distance between contours of observers (search grid)
     
     for i = 1:1:nr_patients
             for j = 1:1:nr_mod

@@ -1,6 +1,10 @@
 function Result_dice_mismatch = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists)
-%Dice similarity between the Union and Intersection of the 4 specialists'
-%tumor delineations
+%   Dice similarity between the Union and Intersection of the 4 specialists'
+%   tumor delineations
+% 
+%     Result_dice_mismatch
+%         -> Patients
+%             -> Per modality dice of union and intersection of observers
 
     for i = 1:1:nr_patients
         for j = 1:1:nr_mod

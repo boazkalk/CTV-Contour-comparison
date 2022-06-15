@@ -1,4 +1,6 @@
 function Tumorvolumediff = calcvoldiff(Tumorvolumes,nr_patients,nr_specialists)
+% Tumorvolumediff
+%     -> Rows=specialists, Columns=patients
 
     for i = 1:1:nr_patients
         for k = 1:1:nr_specialists
@@ -6,7 +8,7 @@ function Tumorvolumediff = calcvoldiff(Tumorvolumes,nr_patients,nr_specialists)
             voldiff2 = Tumorvolumes(i).mod(2).specialist(k).Tumorvolume;
             diff = abs(voldiff1-voldiff2);
 
-            Tumorvolumediff(i).spec(k).voldiff = diff;
+            Tumorvolumediff(k,i) = diff;
         end
     end
 
