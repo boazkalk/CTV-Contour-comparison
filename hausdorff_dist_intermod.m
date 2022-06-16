@@ -9,6 +9,12 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
 %         -> Specialists' max hausdorff distance between 0.35T and 1.5T
 
     for i = 1:1:nr_patients
+                if i == 1 
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances intermod...');
+                else
+                close(f)
+                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances intermod...');
+                end
             for j = 1:1:nr_specialists
 
                     mask1 = Proc_Pat_delin(i).mod(1).specialist(j).TDmask;
@@ -33,15 +39,10 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
     
                     Result_D95(i).spec(j).O35Truevs15T2 = D95;
                     Result_Dmax(i).spec(j).O35Truevs15T2 = D;
-            
+                
+                    disp('spec')
             end
-
-                if i == 1 
-                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances intermod...');
-                else
-                close(f)
-                f = waitbar((i)/nr_patients,'Calculating Hausdorff distances intermod...');
-                end
+              disp('pat')
     end
 close(f)
 end
