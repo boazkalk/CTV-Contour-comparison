@@ -23,6 +23,7 @@ for i = 1:1:nr_patients
 %                 imshow(mask)
 %                 set(gcf, 'Position', get(0, 'Screensize'));
                 Pat_delin(i).mod(j).specialist(k).masks(l).mask = mask;
+                Pat_delin(i).mod(j).specialist(k).contours(l).contour = contour_corr2;
             end
         end
     end

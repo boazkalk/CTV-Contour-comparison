@@ -57,5 +57,11 @@ function Specialist_CTV = parsedelininfo(pat_pathname, specialists,mod)
         Specialist_CTV(j).Imagesize = size(slice);
         Aspect_ratio = [transpose(Image_information.PixelSpacing), Image_information.SliceThickness];
         Specialist_CTV(j).Image_Aspect_Ratio = Aspect_ratio;
+
+        %Images = struct([]);
+        %for b = 1:1:length(Slices)
+        %    Images(b).image = dicomread(dicominfo(strcat(temp_struct.folder,'\','MR', Slices{b,1}, '.dcm')));
+        %end
+        %Specialist_CTV(j).Refsliceimages = Images;
     end
 end

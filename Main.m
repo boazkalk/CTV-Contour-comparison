@@ -67,12 +67,12 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 %% Plotting
 close all
 
-plotresults_solo = 1;
-plotresults_comb = 1;
-plotresults_solo_intermod = 1;
-plotresults_comb_intermod = 1;
-plotresults_vol = 1;
-plotresults_vol_comb = 1;
+plotresults_solo = 0;
+plotresults_comb = 0;
+plotresults_solo_intermod = 0;
+plotresults_comb_intermod = 0;
+plotresults_vol = 0;
+plotresults_vol_comb = 0;
 plotresults_vol_diff = 1;
 plotresults_vol_comb_diff = 1;
 
@@ -92,5 +92,45 @@ plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdist
 
 %% Plot results patients combined intermod
 plotrescomb_intermod(plotresults_comb_intermod, Result_intermod_combined_perspec, Result_intermod_combined_total, specialists)
+
+%%
+% Amount_of_contours = 4;
+% Patient = 1;
+% Modality = 1;
+% Specialist = [1 2 3 4];
+% for cntrs = 1:1:Amount_of_contours
+%     Patient_temp = Patient(cntrs);
+%     Modality_temp = Modality(cntrs);
+%     Specialist_temp = Specialist(cntrs);
+%     contour(cntrs).contour = Proc_Pat_delin(Patient_temp).mod(Modality_temp).specialist(Specialist_temp).contours;
+%     images(cntrs).images = Proc_Pat_delin(Patient_temp).mod(Modality_temp).specialist(Specialist_temp).imagenrs;
+% end
+% 
+% imagenrs = {};
+% for i = 1:1:length(images)
+%     imagenrs = [imagenrs; images(i).images];
+% end
+% 
+% for l = 1:1:length(imagenrs)
+%         slicenr = cell2mat(imagenrs{l});
+%         tempnr = strrep(slicenr,'.','');
+%         imagenrsadapt(l) = str2num(tempnr(end-5:end));
+% end
+% A = unique(transpose(imagenrsadapt),'rows');
+% [B,I] = sort(A);
+% 
+% for i = 1:1:length(B)
+%     folder = strcat(folderpath, '\PAT', num2str(Patient), '\', mod(Modality), '\', specialists(Specialist));
+% end
+% 
+% for i = 1:1:length(contour)
+% slice = dicomread(dicominfo(strcat(folder,'\','MR', images{i,1}, '.dcm')));
+% contour_temp = contour(i).contour;  
+% imshow(slice,[])
+% hold on
+% plot(contour_temp(:,1), contour_temp(:,2), LineWidth=2)
+% end
+
+
 
 
