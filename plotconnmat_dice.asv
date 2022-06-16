@@ -38,7 +38,7 @@ function plotconnmat_dice(specialists, nr_patients, nr_specialists, Result_dice_
     set(gca, 'YTickLabel', L); % set y-axis labels
     colormap('default'); % set the colorschemeimagenrs
     cb = colorbar;
-    title(strcat('0.35T, patient=', num2str(j)'));
+    title('0.35T')
     
     subplot(2,nr_patients,nr_patients+j)
     imagesc(tempresmat15)
@@ -48,13 +48,11 @@ function plotconnmat_dice(specialists, nr_patients, nr_specialists, Result_dice_
     set(gca, 'YTickLabel', L); % set y-axis labels
     colormap('default'); % set the colorscheme
     cb = colorbar;
-    title(strcat('1.5T, patient=', num2str(j)'))
+    title('1.5T')
     
-    
+    sgtitle(strcat('Intra modality dice coefficient')));
     
     end
-
-    sgtitle(strcat('Intra modality dice coefficient'));
     
 %     mean_dice_intramod = struct([]);
 %     mean_dice_intramod(1).dice = zeros(1,length(grid));
