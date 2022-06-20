@@ -4,7 +4,7 @@ close all
 %% Set up data and code folder
 % The delineation data path has to have the following set up:
 % Data folder -> Patients -> Modalities -> Specialists
-folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt8';
+folderpath = 'C:\School\Master\Stage\Matlab\testdata-echt9';
 temp_nr_patients = struct2cell(dir(folderpath));
 [~,nr_patients] = size(find(contains(temp_nr_patients(1,:),'PAT')));
 
@@ -17,7 +17,7 @@ specialists = ["HPN" "PTN" "TBO" "STR"];
 nr_specialists = length(specialists);
 
 % Parse the information of the RTSTRUCT files and put in a data struct
-Pat_delin = parsetotal(folderpath, nr_patients, mod, specialists);
+Pat_delin = parsetotal(folderpath, nr_patients,mod,specialists);
 % Get 2D masks from the contours 
 Pat_delin = getmasks(Pat_delin,nr_patients, nr_mod,nr_specialists);
 % Put all masks in the right order wrt slice number in the total volume
@@ -76,8 +76,8 @@ plotresults_vol_comb = 1;
 plotresults_vol_diff = 1;
 plotresults_vol_comb_diff = 1;
 conmat_dice = 1;
-conmat_hausdorffmax = 0;
-conmat_hausdorff95 = 0;
+conmat_hausdorffmax = 1;
+conmat_hausdorff95 = 1;
 
 %% Plot volume results
 plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod);
