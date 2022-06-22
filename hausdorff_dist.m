@@ -11,7 +11,7 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
 %             -> max Hausdorff distance between contours of observers (search grid)
     
     for i = 1:1:nr_patients
-        disp(strcat('pat=', num2str(i)));
+        %disp(strcat('pat=', num2str(i)));
                 if i == 1 
                 f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
                 else
@@ -19,7 +19,7 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
                 f = waitbar((i)/nr_patients,'Calculating Hausdorff distances...');
                 end
             for j = 1:1:nr_mod
-                disp(strcat('mod=', num2str(j)));
+                %disp(strcat('mod=', num2str(j)));
                     % set up search grid to compare every 3D mask of every
                     % specialist
                     v = 1:nr_specialists;
@@ -31,7 +31,7 @@ function [Result_D95, Result_Dmax] = hausdorff_dist(Proc_Pat_delin, nr_patients,
                     Dar =[];
                     
                     for t = 1:1:length(grid)
-                        disp(strcat('grid=', num2str(t)));
+                        %disp(strcat('grid=', num2str(t)));
                     combi = grid(t,:);
                     mask1 = Proc_Pat_delin(i).mod(j).specialist(combi(1)).TDmask;
                     mask2 = Proc_Pat_delin(i).mod(j).specialist(combi(2)).TDmask;

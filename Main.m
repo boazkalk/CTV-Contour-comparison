@@ -67,17 +67,17 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 %% Plotting
 close all
 
-plotresults_solo = 1;
-plotresults_comb = 1;
-plotresults_solo_intermod = 1;
-plotresults_comb_intermod = 1;
-plotresults_vol = 1;
-plotresults_vol_comb = 1;
-plotresults_vol_diff = 1;
-plotresults_vol_comb_diff = 1;
-conmat_dice = 1;
-conmat_hausdorffmax = 1;
-conmat_hausdorff95 = 1;
+plotresults_solo = 0;
+plotresults_comb = 0;
+plotresults_solo_intermod = 0;
+plotresults_comb_intermod = 0;
+plotresults_vol = 0;
+plotresults_vol_comb = 0;
+plotresults_vol_diff = 0;
+plotresults_vol_comb_diff = 0;
+conmat_dice = 0;
+conmat_hausdorffmax = 0;
+conmat_hausdorff95 = 0;
 
 %% Plot volume results
 plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod);

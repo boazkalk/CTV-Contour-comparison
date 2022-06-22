@@ -40,9 +40,9 @@ function [Result_D95, Result_Dmax] = hausdorff_dist_intermod(Proc_Pat_delin, nr_
                     Result_D95(i).spec(j).O35Truevs15T2 = D95;
                     Result_Dmax(i).spec(j).O35Truevs15T2 = D;
                 
-                    disp('spec')
+                    %disp('spec')
             end
-              disp('pat')
+             % disp('pat')
     end
 close(f)
 end
