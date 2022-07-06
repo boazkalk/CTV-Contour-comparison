@@ -33,14 +33,14 @@ function plotrescomb_intermod(plotresults_comb_intermod, Result_intermod_combine
         temphdorff95combined_spec = [transpose(Result_intermod_combined_perspec.hdorff95)];
         figure()
         boxplot((temphdorff95combined_spec),'Labels',specialists)
-        title(['Combined dice similarity per specialist'])
+        title(['Combined 95th perc Hausdorff distance per specialist'])
         xlabel('Image modality')
         ylabel('Dice similarity')
 
         temphdorffmaxcombined_spec = [transpose(Result_intermod_combined_perspec.hdorffmax)];
         figure()
         boxplot((temphdorffmaxcombined_spec),'Labels',specialists)
-        title(['Combined dice similarity per specialist'])
+        title(['Combined max Hausdorff distance per specialist'])
         xlabel('Image modality')
         ylabel('Dice similarity')
 

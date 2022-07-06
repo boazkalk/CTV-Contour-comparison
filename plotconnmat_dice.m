@@ -1,6 +1,5 @@
 function plotconnmat_dice(specialists, nr_patients, nr_specialists, Result_dice_single_intramod)
 
-    figure()
     for j = 1:1:nr_patients
     
     patient = j;
@@ -29,7 +28,7 @@ function plotconnmat_dice(specialists, nr_patients, nr_specialists, Result_dice_
     n=nr_specialists;
     L = specialists;
     
-
+    figure()
     subplot(1,2,1)
     imagesc(tempresmat35)
     set(gca, 'XTick', 1:n); % center x-axis ticks on bins
@@ -38,7 +37,7 @@ function plotconnmat_dice(specialists, nr_patients, nr_specialists, Result_dice_
     set(gca, 'YTickLabel', L); % set y-axis labels
     colormap('default'); % set the colorschemeimagenrs
     cb = colorbar;
-    title(strcat('0.35T, patient=', num2str(j)'));
+    title('0.35T')
     
     subplot(1,2,2)
     imagesc(tempresmat15)
@@ -48,10 +47,10 @@ function plotconnmat_dice(specialists, nr_patients, nr_specialists, Result_dice_
     set(gca, 'YTickLabel', L); % set y-axis labels
     colormap('default'); % set the colorscheme
     cb = colorbar;
-    title(strcat('1.5T, patient=', num2str(j)'))
+    title('1.5T')
     
-    sgtitle(strcat('Intra modality dice coefficient'));
-    
+    sgtitle(strcat('Intra modality dice coefficient, Patient = ', num2str(patient)));
+
     end
 
     
