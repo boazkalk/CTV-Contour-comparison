@@ -13,11 +13,10 @@ mod = ["0.35Truefi" "1.5Tregistered"];
 nr_mod = length(mod);
  
 % Radiotherapists' abbreviations
-specialists = ["HPN" "PTN" "STR"];
-% specialists = ["HPN" "PTN" "TBO" "STR"];
+specialists = ["HPN" "PTN" "TBO" "STR"];
 nr_specialists = length(specialists);
 
-% Parse the information of the RTSTRUCT files and put in a data struct
+%% Parse the information of the RTSTRUCT files and put in a data struct
 Pat_delin = parsetotal(folderpath, nr_patients,mod,specialists);
 % Get 2D masks from the contours 
 Pat_delin = getmasks(Pat_delin,nr_patients, nr_mod,nr_specialists);
@@ -68,14 +67,14 @@ close all
 plotresults_solo = 0;
 plotresults_comb = 0;
 plotresults_solo_intermod = 0;
-plotresults_comb_intermod = 0;
+plotresults_comb_intermod = 1;
 plotresults_vol = 0;
 plotresults_vol_comb = 0;
 plotresults_vol_diff = 0;
 plotresults_vol_comb_diff = 0;
-conmat_dice = 1;
-conmat_hausdorffmax = 1;
-conmat_hausdorff95 = 1;
+conmat_dice = 0;
+conmat_hausdorffmax = 0;
+conmat_hausdorff95 = 0;
 
 % Plot volume results
 plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod);

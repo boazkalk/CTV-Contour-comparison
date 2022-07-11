@@ -4,8 +4,8 @@ function plotvoldiff(Tumorvolumediff,plotresults_vol,plotresults_vol_comb,nr_pat
             voldiff = [transpose(Tumorvolumediff)];
             figure()
             boxplot((voldiff),'Labels',specialists)
-            title(['Volume difference between modalities per specialist for all patients, pos=0.35>1.5, neg=0.35<1.5'])
-            ylabel('Tumor volume difference mm3')
+            title({'Percentage volume difference between modalities per specialist for all patients','Negative=1.5T<0.35T, Positive=1.5T>0.35T'})
+            ylabel('Tumor volume difference %')
 
         else end
         
@@ -18,8 +18,8 @@ function plotvoldiff(Tumorvolumediff,plotresults_vol,plotresults_vol_comb,nr_pat
             figure()
             boxplot((tempvoldiff))
 
-            title(['Volume difference between modalities all specialists combined, pos=0.35>1.5, neg=0.35<1.5'])
-            ylabel('Tumor volume difference mm3')
+            title(['Percentage volume difference between modalities all specialists combined'])
+            ylabel('Tumor volume difference %')
 
         else end
 end
