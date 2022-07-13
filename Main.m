@@ -63,22 +63,23 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 
 %% Plotting
 close all
+specialistsnr = ["1" "2" "3" "4"]; 
 
 plotresults_solo = 0;
 plotresults_comb = 0;
 plotresults_solo_intermod = 0;
-plotresults_comb_intermod = 1;
+plotresults_comb_intermod = 0;
 plotresults_vol = 0;
 plotresults_vol_comb = 0;
-plotresults_vol_diff = 0;
-plotresults_vol_comb_diff = 0;
+plotresults_vol_diff = 1;
+plotresults_vol_comb_diff = 1;
 conmat_dice = 0;
 conmat_hausdorffmax = 0;
 conmat_hausdorff95 = 0;
 
 % Plot volume results
 plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod);
-plotvoldiff(Tumorvolumediff,plotresults_vol_diff,plotresults_vol_comb_diff,nr_patients,specialists)
+plotvoldiff(Tumorvolumediff,plotresults_vol_diff,plotresults_vol_comb_diff,nr_patients,specialistsnr)
 
 % Plot results Patients solo intramod
 plotressolo(plotresults_solo,Result_dice_single_intramod,Result_hdistD95_intramod,Result_hdistDmax_intramod,nr_patients,mod);
@@ -88,14 +89,14 @@ plotrescomb(plotresults_comb,Result_dice_combined_single_intramod,Result_dice_co
     ,Result_hdistmax_combined_intramod,mod);
 
 % Plot connectivity matrices of dice/hausdorff
-plotconmat(conmat_dice,conmat_hausdorffmax,conmat_hausdorff95, specialists, nr_patients, nr_specialists, ...
+plotconmat(conmat_dice,conmat_hausdorffmax,conmat_hausdorff95, specialistsnr, nr_patients, nr_specialists, ...
     Result_dice_single_intramod, Result_hdistDmax_intramod, Result_hdistD95_intramod)
 
 % Plot results Patients solo intermodality
 plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdistD95_intermod,Result_hdistDmax_intermod,nr_patients)
 
 % Plot results patients combined intermod
-plotrescomb_intermod(plotresults_comb_intermod, Result_intermod_combined_perspec, Result_intermod_combined_total, specialists)
+plotrescomb_intermod(plotresults_comb_intermod, Result_intermod_combined_perspec, Result_intermod_combined_total, specialistsnr)
 
 
 
