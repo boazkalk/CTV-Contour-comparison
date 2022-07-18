@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_combined_mismatch,Result_hdistD95_combined,Result_hdistmax_combined,mod)
     if plotresults_comb == true
         tempdicecombined = [transpose(Result_dice_combined_single.mod035True),transpose(Result_dice_combined_single.mod15T2)];

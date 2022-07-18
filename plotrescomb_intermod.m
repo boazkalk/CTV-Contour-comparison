@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function plotrescomb_intermod(plotresults_comb_intermod, Result_intermod_combined_perspec, Result_intermod_combined_total, specialists)
     if plotresults_comb_intermod == true
 

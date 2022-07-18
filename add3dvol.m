@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists)
     % For all Patients->Modalities->Specialists the 2D masks are combined
     % into 1 3D mask.

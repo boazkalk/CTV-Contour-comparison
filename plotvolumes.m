@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function plotvolumes(Tumorvolumes,plotresults_vol,plotresults_vol_comb,nr_patients,mod)
         if plotresults_vol == true
             for i = 1:1:nr_patients

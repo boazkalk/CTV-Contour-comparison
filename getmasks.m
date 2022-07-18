@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Pat_delin = getmasks(Pat_delin,nr_patients,nr_mod, nr_specialists)
 
 % For every Patient->Modality->Specialist

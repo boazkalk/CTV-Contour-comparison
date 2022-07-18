@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function plotressolo(plotresults_solo,Result_dice_single,Result_hdistD95,Result_hdistDmax,nr_patients,mod)
     if plotresults_solo == true
         for i = 1:1:nr_patients

@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Proc_Pat_delin = removedoubles(Pat_delin, nr_patients,nr_mod,nr_specialists)
     % If the contour in one slice is disconnected for some reason, two
     % contours are created for the same slice number. Here these two

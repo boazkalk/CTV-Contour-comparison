@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Pat_delin = sortimagenr_masks(Pat_delin, nr_patients, nr_mod, nr_specialists)
 
 % Sort the masks according to slice number

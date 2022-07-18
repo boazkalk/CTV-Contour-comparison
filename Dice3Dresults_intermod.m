@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Result_dice = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists)
     % Calculate inter modality dice coefficient by comparing their 3D
     % masks with the Dice coefficient

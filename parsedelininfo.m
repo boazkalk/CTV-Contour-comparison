@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Specialist_CTV = parsedelininfo(pat_pathname, specialists,mod)
     
     % Loop over all specialists

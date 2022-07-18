@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function plotconnmat_hausdorffmax(specialists, nr_patients, nr_specialists, Result_hdistDmax_intramod)
 
     for j = 1:1:nr_patients

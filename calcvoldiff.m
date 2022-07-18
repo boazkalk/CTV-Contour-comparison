@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Boaz Kalkhoven 2022 %
+%%%%%%%%%%%%%%%%%%%%%%%
+
 function Tumorvolumediff = calcvoldiff(Tumorvolumes,nr_patients,nr_specialists)
 % Tumorvolumediff
 %     -> Rows=specialists, Columns=patients
