@@ -9,7 +9,7 @@ function plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_co
         subplot(1,4,1)
         boxplot((tempdicecombined),'Labels',mod)
         title(['Dice similarity coefficient'])
-        xlabel('Image modality')
+        xlabel('A')
         ylabel('Dice similarity')
     
         tempdicecombinedmism = [transpose(Result_dice_combined_mismatch.mod035True),transpose(Result_dice_combined_mismatch.mod15T2)];
@@ -17,7 +17,7 @@ function plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_co
         subplot(1,4,2)
         boxplot((tempdicecombinedmism),'Labels',mod)
         title(['Mismatch dice similarity coefficient'])
-        xlabel('Image modality')
+        xlabel('B')
         ylabel('Dice similarity')
     
         temphdist95 = [transpose(Result_hdistD95_combined.mod035True),transpose(Result_hdistD95_combined.mod15T2)];
@@ -25,7 +25,7 @@ function plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_co
         subplot(1,4,3)
         boxplot((temphdist95),'Labels',mod)
         title(['Hausdorff distance 95th percentile'])
-        xlabel('Image modality')
+        xlabel('C')
         ylabel('Distance (mm)')
     
         temphdistmax = [transpose(Result_hdistmax_combined.mod035True),transpose(Result_hdistmax_combined.mod15T2)];
@@ -33,7 +33,7 @@ function plotrescomb(plotresults_comb,Result_dice_combined_single,Result_dice_co
         subplot(1,4,4)
         boxplot((temphdistmax),'Labels',mod)
         title(['Hausdorff distance'])
-        xlabel('Image modality')
+        xlabel('D')
         ylabel('Distance (mm)')
 
     

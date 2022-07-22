@@ -34,17 +34,17 @@ Proc_Pat_delin = add3dvol(Proc_Pat_delin, nr_patients,nr_mod,nr_specialists);
 %% Volume calculation of tumors
 Tumorvolumes = calctumorvolume(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists); 
 
-% Volume differences
+%% Volume differences
 Tumorvolumediff = calcvoldiff(Tumorvolumes,nr_patients,nr_specialists);
 
 %% Intra modality results
 % Calculate the inter specialist, intra modality volume dice coefficient
 Result_dice_single_intramod = Dice3Dresults(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
-% Calculate the CTV mismatch
+%% Calculate the CTV mismatch
 Result_dice_mismatch_intramod = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
-% Calculate max + 95th percentile hausdorff distance, inter specialist,
+%% Calculate max + 95th percentile hausdorff distance, inter specialist,
 % intra modality
 [Result_hdistD95_intramod, Result_hdistDmax_intramod] = hausdorff_dist(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
@@ -57,7 +57,7 @@ Result_dice_mismatch_intramod = dice_mismatch(Proc_Pat_delin, nr_patients, nr_mo
 % Calculate the inter modality, intra specialist volume dice coefficient
 Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mod,nr_specialists);
 
-% Calculate max + 95th percentile hausdorff distance, intra specialist,
+%% Calculate max + 95th percentile hausdorff distance, intra specialist,
 % inter modality 
 [Result_hdistD95_intermod, Result_hdistDmax_intermod] = hausdorff_dist_intermod(Proc_Pat_delin, nr_patients, nr_mod, nr_specialists);
 
@@ -68,10 +68,11 @@ Result_dice_intermod = Dice3Dresults_intermod(Proc_Pat_delin, nr_patients, nr_mo
 %% Plotting
 close all
 specialistsnr = ["1" "2" "3" "4"]; 
-mods = ["0.35Truefi" "1.5T2"];
+mods = ["0.35Trufi" "1.5T2"];
 
 plotresults_solo = 0;
 plotresults_comb = 1;
+plotresults_hist = 1;
 plotresults_solo_intermod = 0;
 plotresults_comb_intermod = 0;
 plotresults_vol = 0;
@@ -89,7 +90,7 @@ plotvoldiff(Tumorvolumediff,plotresults_vol_diff,plotresults_vol_comb_diff,nr_pa
 % Plot results Patients solo intramod
 plotressolo(plotresults_solo,Result_dice_single_intramod,Result_hdistD95_intramod,Result_hdistDmax_intramod,nr_patients,mods);
 
-% Plot results Patients combined intramod
+% Plot results Patients combin ed intramod
 plotrescomb(plotresults_comb,Result_dice_combined_single_intramod,Result_dice_combined_mismatch_intramod,Result_hdistD95_combined_intramod ...
     ,Result_hdistmax_combined_intramod,mods);
 
@@ -102,8 +103,6 @@ plotressolo_intermod(plotresults_solo_intermod,Result_dice_intermod,Result_hdist
 
 % Plot results patients combined intermod
 plotrescomb_intermod(plotresults_comb_intermod, Result_intermod_combined_perspec, Result_intermod_combined_total, specialistsnr)
-
-
 
 
 

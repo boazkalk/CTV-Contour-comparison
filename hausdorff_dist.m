@@ -89,6 +89,7 @@ function [D,D95,idx]=dir_hdist2(A,B,aspect)
         A=find(A); % Set points in A
         idxB=idxB(A); % Only care about points under A
         DT=DT(A);
+        %plothist(DT)
         [D,idxA]=max(DT); % Farthest point in A (out of A~=0)
         D95 = prctile(DT,95);
         idxB=idxB(idxA); % Used point in B
